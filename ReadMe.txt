@@ -4,7 +4,7 @@ Making mymoudles
 /desecret.js
 
 module.exports = {
-    user:"kanozo12",
-    password:"1234",
+    user:"DB ID",
+    password:"DB Password",
     host:"gondr.asuscomm.com"
 };
