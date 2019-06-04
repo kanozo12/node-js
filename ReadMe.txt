@@ -1,4 +1,4 @@
-Making mymoudles
+Making moduless
 /mymodules/dbsecret.js
 	
 /desecret.js
