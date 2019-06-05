@@ -1,12 +1,13 @@
 Making moduless
 /mymodules/dbsecret.js
 	
-/desecret.js
+/dbsecret.js
 
 module.exports = {
     user:"DB ID",
     password:"DB Password",
     host:"gondr.asuscomm.com"
+    database:"DB name"
 };
 
 20190608 숙제
