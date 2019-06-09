@@ -36,22 +36,43 @@
 
         <div class="row mt-3 justify-content-center d-flex">
             <ul class="pagination">
-                <% if (p.prev) { %>
-                    <% if(p.startPage >= 6) { %>
-                        <li class="page-item">
-                            <a class="page-link" href="/board?p=<%= p.startPage - 1 %>">이전</a>
-                        </li>
-                    <% } %>
+
+                <% if(p.nowPage == 1) { %>
+                <li class="page-item">
+                    <a class="btn btn-primary" href="/board?p=1">1</a>
+                </li>
+                <% } else {%>
+                <li class="page-item">
+                    <a class="page-link" href="/board?p=1">1</a>
+                </li>
                 <% } %>
-                <% for (let i = p.startPage; i <= p.endPage; i++)  { %>
-                    <li class="page-item">
-                        <a class="page-link" href="/board?p=<%= i %>"><%= i %></a>
-                    </li>
+
+                <% if(p.nowPage !=  1 && p.nowPage >= 3) {  %>
+                ...
+                <li class="page-item">
+                    <a class="page-link" href="/board?p=<%= p.nowPage - 1 %>"><%= p.nowPage - 1 %></a>
+                </li>
                 <% } %>
-                <% if (p.next) { %>
-                    <li class="page-item">
-                        <a class="page-link" href="/board?p=<%= p.endPage + 1 %>">다음</a>
-                    </li>
+
+                <% if(p.nowPage >= 2) { %>
+                <li class="page-item">
+                    <a class="btn btn-primary" href="/board?p=<%= p.nowPage %>"><%= p.nowPage %></a>
+                </li>
+                <% } %>
+                <% if(p.nowPage + 1 < p.endPage) { %>
+                <li class="page-item">
+                    <a class="page-link" href="/board?p=<%= p.nowPage + 1 %>"><%= p.nowPage + 1 %></a>
+                </li>
+                <% } %>
+                <% if(p.nowPage <= p.endPage - 2) { %>
+                ...
+                <% } %>
+
+
+                <% if(p.nowPage != p.endPage) { %>
+                <li class="page-item">
+                    <a class="page-link" href="/board?p=<%= p.totalPage %>"><%= p.totalPage %></a>
+                </li>
                 <% } %>
             </ul>
         </div>

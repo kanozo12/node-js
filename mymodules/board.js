@@ -36,12 +36,16 @@ router.get('/', (req, res) => {
             return;
         }
         let list = result;
-        conn.query("SELECT count(*) AS cnt FROM nodeBoards", [], (err, result) => {
+
+        conn.query("SELECT count(*) AS cnt FROM nodeBoards", [], (err, result)=>{
             let p = {};
-            p.totalCnt = result[0].cnt; //전체 글의 개수
+            page = parseInt(page);
+            p.nowPage = page;
+            p.totalCnt = result[0].cnt; //전체 글의 갯수
+            p.totalCnt = parseInt(p.totalCnt);
             p.totalPage = Math.ceil(p.totalCnt / 10);
-            p.endPage = Math.ceil(page / 5) * 5;
-            p.startPage = p.endPage - 4;
+            p.startPage =  p.startPage = p.endPage - 4;
+            p.endPage = Math.ceil(page / 1) * 5;
             p.prev = true;
             p.next = true;
 
@@ -49,14 +53,12 @@ router.get('/', (req, res) => {
                 p.endPage = p.totalPage;
                 p.next = false;
             }
-
             if(p.startPage == 1) {
-                p.prev == false;
+                p.prev = false;
             }
 
-            res.render('board/board', {list:list, p:p});
+            res.render('board/board', { list: list, p: p });
         });
-
     });
 });
 
